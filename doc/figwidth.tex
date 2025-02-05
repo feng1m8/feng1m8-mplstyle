@@ -1,0 +1,22 @@
+\documentclass[twocolumn]{aastex631}
+
+\usepackage{xeCJK}
+
+\usepackage{lengthconvert}
+
+\begin{document}
+
+\title{Width of Figure}
+
+\begin{abstract}
+    The width of the figure is determined from the column width in the paper.
+    In this paper, the column width with \textbf{onecolumn} style is \Convert[unit=in, precision=2, number-only]{\columnwidth} inch.
+\end{abstract}
+
+\section*{Section}
+The column width with \textbf{twocolumn} style is \Convert[unit=in, precision=2, number-only]{\columnwidth} inch.
+
+The width of the figure is set to 0.85 $\times$ 1.5 columnwidth.
+The additional 1.5 factor is referenced from \href{https://stackoverflow.com/questions/71829766/matplotlib-fontsize-seems-wrong-in-pdf}{\textit{matplotlib fontsize seems wrong in pdf?}}.
+
+\end{document}
