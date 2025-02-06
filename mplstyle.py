@@ -38,6 +38,8 @@ class feng1m8:
         feng1m8.savefig.function = plt.savefig
         plt.savefig = feng1m8.savefig
 
+        if hasattr(plt, 'caption'):
+            feng1m8.caption.function = plt.caption
         plt.caption = feng1m8.caption
 
     @staticmethod
@@ -94,15 +96,31 @@ class feng1m8:
 
     @staticmethod
     def use(*style):
-        if style[0] == 'feng1m8':
+        if style[0] == 'feng1m8' or style[0] == feng1m8:
             feng1m8.style(style[1])
         else:
             plt.rcParams = feng1m8.rcParams
             plt.Figure.set_layout_engine = feng1m8.set_layout_engine.function
             plt.colorbar = feng1m8.colorbar.function
             plt.savefig = feng1m8.savefig.function
+
+            if hasattr(feng1m8.caption, 'function'):
+                plt.caption = feng1m8.caption.function
+            else:
+                delattr(plt, 'caption')
+
             feng1m8.use.function(style)
 
 
 feng1m8.use.function = plt.style.use
 plt.style.use = feng1m8.use
+
+
+if __name__ == '__main__':
+    plt.style.use(feng1m8, 'half')
+    plt.caption('upper center', loc='upper center')
+    plt.show()
+
+    plt.style.use('default')
+    plt.text(0.5, 1, 'upper center')
+    plt.show()
